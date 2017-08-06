@@ -1,0 +1,29 @@
+{
+  "name": "TicketReservation",
+  "version": "1.0.0",
+  "description": "RESTful ReservationAPI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aghilan/ReservationApp.git"
+  },
+  "keywords": [
+    "RESTful",
+    "API",
+    "Reservation"
+  ],
+  "author": "Aghilan Parmasivam",
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.3",
+    "express": "^4.14.0",
+    "mongoose": "^4.7.2"
+  }
+}
