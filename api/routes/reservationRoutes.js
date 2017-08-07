@@ -12,6 +12,7 @@ module.exports = function(app) {
 		.get(seats.get_seat_status)
 
 	app.route('/users/:userId/reservation')
+		.get(reservation.get_reservation)
 		.post(reservation.book_tickets)
 		.delete(reservation.cancel_reservation);
 

@@ -4,10 +4,22 @@ var mongoose = require('mongoose'),
     Reservation = mongoose.model('Reservation'),
     Seats = mongoose.model('Seats');
 /*
+Lists all the reservation made for any given user
+*/
+exports.get_reservation = function(req, res) {
+  Reservation.find({userId: req.params.userId},function(err,reservations){
+    if(err)
+      res.send(err);
+    res.json(reservations)
+  })
+};
+
+/*
 Creates a new Reservation given its seats, username for any given user
 */
 exports.book_tickets = function(req, res) {
   var new_reservation = new Reservation(req.body);
+  new_reservation.userId= req.params.userId
   new_reservation.save(function(err, reservation) {
     if (err) {
       return res.send(err);
