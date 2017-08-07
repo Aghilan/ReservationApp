@@ -9,20 +9,22 @@ Creates a new Reservation given its seats, username for any given user
 exports.book_tickets = function(req, res) {
   var new_reservation = new Reservation(req.body);
   new_reservation.save(function(err, reservation) {
-    if (err)
-      res.send(err);
-    reservation.seats.forEach(function(seat){
+    if (err) {
+      return res.send(err);
+    }
+    reservation.seats.forEach(function(seat,i){
        Seats.update(
          { "name": seat },
          {
            $set: {
              "status": reservation._id
            }
-         },
-         function(err, success) {
-           res.status(200).send(reservation);
+         }, function(err,success){
+           if(i === reservation.seats.length-1){
+             res.send(reservation);
+           }
          });
-    })
+      })
   });
 };
 
