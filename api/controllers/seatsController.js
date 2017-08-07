@@ -16,12 +16,16 @@ exports.get_available_seats = function(req, res) {
 Prints information like all seats and available seats
 */
 exports.get_seat_status = function(req, res) {
-  Seats.find({}, function(err, seats) {
-    if (err)
-      res.send(err);
-    if(seats  == null){
-      res.status(404).send({});
-    }
-    res.json(seats);
-  });
+  Seats.find({}).sort('name').exec(function(err, seats){
+    var theaterSeats = [];
+    var rowSeats = [];
+    seats.forEach(function(seat,i){
+      rowSeats.push(seat);
+      if(i==7 || i==seats.length-1){
+        theaterSeats.push(rowSeats);
+        rowSeats = [];
+      }
+    })
+    res.status(200).send(theaterSeats);
+  })
 };
