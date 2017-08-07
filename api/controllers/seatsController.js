@@ -21,7 +21,7 @@ exports.get_seat_status = function(req, res) {
     var rowSeats = [];
     seats.forEach(function(seat,i){
       rowSeats.push(seat);
-      if(i==7 || i==seats.length-1){
+      if((i+1)%8==0 || i==seats.length-1){
         theaterSeats.push(rowSeats);
         rowSeats = [];
       }
